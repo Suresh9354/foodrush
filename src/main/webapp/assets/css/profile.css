@@ -1,0 +1,262 @@
+@charset "UTF-8";
+/* =========================
+   PROFILE SECTION
+========================= */
+
+.profile-section{
+
+    padding:80px 0;
+
+    min-height:80vh;
+
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.profile-card{
+
+    max-width:800px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:50px;
+
+    border-radius:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.profile-header{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 25px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 25px rgba(255, 90, 0, 0.2);
+}
+
+
+.profile-header h1{
+
+    font-size:40px;
+
+    color:var(--dark-color);
+
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+.profile-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+
+.profile-item{
+
+    border-bottom:1px solid #eeeeee;
+
+    padding-bottom:20px;
+
+}
+
+
+.profile-item label{
+
+    display:block;
+
+    color:var(--primary-color);
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+
+.profile-item p{
+
+    color:var(--dark-color);
+
+    font-size:18px;
+
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.profile-actions{
+
+    margin-top:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .profile-card{
+
+        padding:30px;
+
+    }
+
+    .profile-header h1{
+
+        font-size:30px;
+
+    }
+
+    .profile-actions{
+
+        flex-direction:column;
+
+    }
+
+}
+
+/* Morphing Profile Input Styles */
+.profile-input {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 18px;
+    font-family: inherit;
+    color: var(--dark-color);
+    box-sizing: border-box;
+    cursor: default;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Edit Mode styling overrides */
+.profile-card.is-editing .profile-input {
+    padding: 12px 18px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    cursor: text;
+    margin-top: 8px;
+}
+
+.profile-card.is-editing .profile-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(255, 90, 0, 0.12);
+}
+
+/* Button Toggles */
+.edit-btn-group {
+    display: none !important;
+}
+
+.profile-card.is-editing .default-btn-group {
+    display: none !important;
+}
+
+.profile-card.is-editing .edit-btn-group {
+    display: inline-block !important;
+}
+
+/* Alert Notification Styles */
+.alert {
+    position: relative;
+    padding: 16px 45px 16px 20px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+    animation: fadeIn 0.4s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.alert-success {
+    background-color: #e8fff1;
+    color: #16a34a;
+    border: 1px solid #c2ffd8;
+}
+
+.alert-danger {
+    background-color: #fff0f0;
+    color: #dc2626;
+    border: 1px solid #ffd4d4;
+}
+
+.alert-close-btn {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: currentColor;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-close-btn:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

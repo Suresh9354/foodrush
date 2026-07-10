@@ -1,0 +1,9 @@
+# Maven build output
+target/
+
+# IDE configurations
+.settings/
+.classpath
+.project
+.vscode/
+*.log

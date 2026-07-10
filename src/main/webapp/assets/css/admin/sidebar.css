@@ -1,0 +1,244 @@
+/* ==========================================================================
+   FOODRUSH ADMIN DASHBOARD - SIDEBAR STYLES (PREMIUM DARK APPLE THEME)
+   ========================================================================== */
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--sidebar-bg); /* Very dark charcoal */
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: var(--transition);
+}
+
+/* Brand Section */
+.sidebar-brand {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 16px; /* Reduced from 24px */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap */
+    font-weight: 800;
+    font-size: 1.15rem; /* Reduced from 1.25rem */
+    color: #FFFFFF;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+}
+
+.sidebar-logo svg {
+    width: 24px; /* Reduced from 28px */
+    height: 24px;
+    transition: var(--transition-spring);
+}
+
+.sidebar-logo:hover svg {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.sidebar-logo-text {
+    font-family: 'Outfit', sans-serif;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.sidebar-logo-text span.brand-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.sidebar-logo-text span.brand-sub {
+    font-size: 0.68rem;
+    color: #8B95A5;
+    font-weight: 500;
+    margin-top: 1px;
+}
+
+.sidebar-logo-badge {
+    display: none; /* We hide the badge since we show Admin Panel in text */
+}
+
+/* Sidebar Menu Navigation */
+.sidebar-menu {
+    flex: 1;
+    padding: 16px 12px 10px 12px; /* Reduced from 24px 16px 12px 16px */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Custom Scrollbar for Sidebar */
+.sidebar-menu::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+}
+
+.sidebar-menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Tighter item gaps */
+}
+
+.sidebar-menu-item a {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Reduced from 14px */
+    padding: 9px 12px; /* Tighter link padding */
+    color: var(--sidebar-text);
+    font-weight: 550;
+    font-size: 0.9rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+    text-decoration: none;
+}
+
+.sidebar-menu-item a i {
+    font-size: 1rem;
+    width: 18px; /* Reduced from 20px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-fast);
+}
+
+/* Hover & Active States */
+.sidebar-menu-item a:hover {
+    background-color: var(--sidebar-hover-bg);
+    color: #FFFFFF;
+    transform: translateX(4px);
+}
+
+.sidebar-menu-item.active a {
+    background: var(--sidebar-active-bg);
+    color: #FFFFFF;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(255, 90, 31, 0.2);
+}
+
+.sidebar-menu-item.active a i {
+    color: #FFFFFF;
+}
+
+.sidebar-menu-item .menu-badge {
+    margin-left: auto;
+    font-size: 0.7rem;
+    background: var(--primary-color);
+    color: #FFF;
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+}
+
+/* Promo Card Widget inside Sidebar */
+.sidebar-promo-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    padding: 12px 10px; /* Reduced from 18px 16px */
+    margin-top: 16px; /* Reduced from 24px */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.sidebar-promo-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-promo-illustration {
+    width: 100%;
+    max-width: 200px;
+    height: 100px;
+    margin: 0 auto 8px auto;
+    opacity: 0.95;
+    transition: var(--transition-spring);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-promo-illustration svg {
+    width: 44px; /* Reduced from 60px */
+    height: 44px;
+}
+
+.sidebar-promo-card:hover .sidebar-promo-illustration {
+    transform: scale(1.1) translateY(-2px);
+    opacity: 1;
+}
+
+.sidebar-promo-card p {
+    font-size: 0.78rem;
+    color: #A3AED0;
+    line-height: 1.4;
+    font-weight: 550;
+}
+
+/* Logout Section */
+.sidebar-footer {
+    padding: 12px; /* Reduced from 16px */
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-footer a {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Reduced from 14px */
+    padding: 10px 12px; /* Tighter padding */
+    color: #EF4444;
+    font-weight: 550;
+    font-size: 0.9rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+    text-decoration: none;
+}
+
+.sidebar-footer a:hover {
+    background-color: rgba(239, 68, 68, 0.08);
+    transform: translateX(4px);
+}
+
+/* Mobile Toggle overlay style */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 99;
+}
+
+/* Mobile responsive drawer overlay display */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    .sidebar.show + .sidebar-overlay {
+        display: block;
+    }
+}

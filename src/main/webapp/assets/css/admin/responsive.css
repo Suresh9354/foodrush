@@ -1,0 +1,115 @@
+/* ==========================================================================
+   FOODRUSH ADMIN DASHBOARD - RESPONSIVE STYLES
+   ========================================================================== */
+
+/* Large Tablets & Desktop view tweaks */
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 240px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+/* Medium & Small Tablets */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 260px; /* Full width drawer */
+    }
+
+    .sidebar {
+        left: calc(var(--sidebar-width) * -1); /* Hidden by default */
+    }
+
+    /* Shown state */
+    .sidebar.show {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Enable mobile toggle overlay */
+    .sidebar.show + .sidebar-overlay {
+        display: block;
+    }
+
+    /* Topbar adjustments */
+    .topbar {
+        left: 0 !important;
+        width: 100% !important;
+        padding: 0 20px !important;
+    }
+
+    .topbar-search-toggle {
+        display: flex;
+    }
+
+    .topbar-search {
+        display: none; /* Hide standard search input in topbar, trigger drawer */
+    }
+    
+    .table-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-input-group {
+        max-width: 100%;
+    }
+    
+    .filter-group {
+        justify-content: space-between;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-card {
+        padding: 24px;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .welcome-graphics {
+        display: none;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .page-header .btn {
+        width: 100%;
+    }
+
+    .modal-wrapper {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
+}

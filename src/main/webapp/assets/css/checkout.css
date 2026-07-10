@@ -1,0 +1,663 @@
+@charset "UTF-8";
+
+/* ==========================================
+   CHECKOUT MAIN LAYOUT
+   ========================================== */
+
+.checkout-section {
+    padding: 60px 0 100px 0;
+    min-height: 85vh;
+    background-color: var(--background);
+}
+
+.checkout-header {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.checkout-title {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--dark-color);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+/* Orange bar under title */
+.checkout-header::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 5px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* ==========================================
+   CHECKOUT CARDS (LEFT COLUMN)
+   ========================================== */
+
+.checkout-card {
+    background: var(--white);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.mt-3 {
+    margin-top: 30px;
+}
+
+.step-title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.step-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.step-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+/* ==========================================
+   1. DELIVERY ADDRESS STYLING
+   ========================================== */
+
+.address-display-box {
+    display: flex;
+    background: #fffbf9; /* Soft peach/cream glow background */
+    border: 1px solid #ffe9e2; /* Very soft orange border */
+    padding: 24px;
+    border-radius: 16px;
+    gap: 20px;
+    position: relative;
+}
+
+.address-pin-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.pin-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--primary-light); /* Soft peach background */
+    border-radius: 50%;
+}
+
+.address-details-wrapper {
+    flex: 1;
+}
+
+.address-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.address-tag-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.address-tag-badge {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.address-lines-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--light-text);
+    margin-bottom: 8px;
+}
+
+.address-phone-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.address-edit-btn-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.btn-edit-address {
+    background: var(--white);
+    border: 1.5px solid #ffe9e2;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.btn-edit-address:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Edit Form Mode */
+.address-edit-box {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.form-group-textarea {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group-textarea label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.form-group-textarea textarea {
+    width: 100%;
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-color);
+    outline: none;
+    transition: var(--transition);
+    background-color: #fafafa;
+}
+
+.form-group-textarea textarea:focus {
+    border-color: var(--primary-color);
+    background-color: var(--white);
+    box-shadow: 0 0 0 3px rgba(255, 90, 0, 0.1);
+}
+
+.address-edit-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-save-address {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-save-address:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-cancel-address {
+    background-color: transparent;
+    color: var(--light-text);
+    border: 1.5px solid var(--border-color);
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-cancel-address:hover {
+    background-color: #f5f5f5;
+    color: var(--dark-color);
+}
+
+
+/* ==========================================
+   2. CUSTOM PAYMENT SELECT DROPDOWN
+   ========================================== */
+
+.payment-selection-wrapper {
+    margin-top: 15px;
+}
+
+.payment-dropdown-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--light-text);
+    margin-bottom: 12px;
+}
+
+.custom-payment-select {
+    position: relative;
+    width: 100%;
+}
+
+.select-trigger-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 24px;
+    background-color: var(--white);
+    border: 1.5px solid var(--border-color);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* Trigger border highlight when open */
+.custom-payment-select.open .select-trigger-box {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 90, 0, 0.1);
+}
+
+.trigger-selected-value {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-color);
+    animation: triggerCrossfade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes triggerCrossfade {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chevron-arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Dropdown list styling */
+.options-list-dropdown {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    border: 1.5px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    z-index: 100;
+    overflow: hidden;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+}
+
+.custom-payment-select.open .options-list-dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.payment-option-item {
+    display: grid;
+    grid-template-columns: 50px 1fr 40px;
+    align-items: center;
+    padding: 18px 24px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    transition: var(--transition);
+    position: relative;
+}
+
+.payment-option-item:last-child {
+    border-bottom: none;
+}
+
+.payment-option-item:hover {
+    background-color: var(--primary-light);
+}
+
+.payment-option-item.selected {
+    background-color: #fffbf9; /* Matching selected glow */
+}
+
+/* Selected option highlight indicator border on active */
+.payment-option-item.selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--primary-color);
+}
+
+.option-item-icon-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--primary-color);
+}
+
+.upi-logo-custom {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #097939, #f26f21);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 2px 4px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.payment-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.option-item-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.option-item-title-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.option-item-desc-text {
+    font-size: 12px;
+    color: var(--light-text);
+}
+
+.option-item-check-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.check-circle-indicator {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
+
+.payment-option-item.selected .check-circle-indicator {
+    display: flex;
+}
+
+
+/* ==========================================
+   BILL DETAILS CARD (RIGHT COLUMN)
+   ========================================== */
+
+.checkout-bill-card {
+    background-color: var(--white);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    position: sticky;
+    top: 110px;
+}
+
+.bill-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 25px;
+}
+
+.bill-details-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bill-label {
+    font-size: 14px;
+    color: var(--light-text);
+}
+
+.flex-align-center {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.info-tooltip-trigger {
+    display: inline-flex;
+    color: #a3a6b1;
+    cursor: help;
+    transition: color 0.2s;
+}
+
+.info-tooltip-trigger:hover {
+    color: var(--primary-color);
+}
+
+.bill-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.free-text {
+    color: #1aa465;
+    font-weight: 700;
+}
+
+.divider-bill {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 22px 0;
+}
+
+.bill-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.total-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.total-value {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: -1px;
+}
+
+/* Secure Banner */
+.secure-payment-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #eefbf4; /* Soft green */
+    color: #1aa465;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Large Place Order button */
+.btn-place-order-large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    font-size: 17px;
+    font-weight: 700;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255, 90, 0, 0.2);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background-color 0.3s ease;
+}
+
+.btn-place-order-large:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(255, 90, 0, 0.3);
+}
+
+.btn-place-order-large:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.payment-method-bottom-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-text);
+    font-size: 12px;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 992px) {
+    .checkout-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .checkout-bill-card {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkout-section {
+        padding: 40px 0 60px 0;
+    }
+    
+    .checkout-title {
+        font-size: 32px;
+    }
+    
+    .checkout-card, .checkout-bill-card {
+        padding: 24px;
+    }
+    
+    .address-display-box {
+        flex-direction: column;
+        gap: 15px;
+        padding: 18px;
+    }
+    
+    .btn-edit-address {
+        align-self: flex-start;
+    }
+    
+    .payment-option-item {
+        grid-template-columns: 40px 1fr 30px;
+        padding: 15px 18px;
+    }
+}
+
+/* ==========================================
+   EXTRACTED INLINE STYLES
+   ========================================== */
+#addressInput {
+    display: none;
+}
+
+.btn-edit-address svg {
+    margin-right: 4px;
+}
+
+#addressEditBox {
+    display: none;
+}
+
+.payment-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.trigger-selected-value .payment-icon-img {
+    margin-right: 12px;
+}
+
+.btn-place-order-large svg {
+    margin-right: 6px;
+}
+
+.payment-method-bottom-notice svg {
+    margin-right: 4px;
+}
