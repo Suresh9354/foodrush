@@ -181,6 +181,42 @@ public class OrderStatusServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        User user = (session != null) ? (User) session.getAttribute("loggedInUser") : null;
+
+        if (user == null) {
+            resp.sendRedirect(req.getContextPath() + "/auth/login.jsp");
+            return;
+        }
+
+        String action = req.getParameter("action");
+        String orderIdStr = req.getParameter("orderId");
+
+        if ("cancel".equals(action) && orderIdStr != null && !orderIdStr.trim().isEmpty()) {
+            try {
+                int orderId = Integer.parseInt(orderIdStr);
+                Order order = orderDAO.getOrderById(orderId);
+
+                if (order != null && order.getUserId() == user.getUserId()) {
+                    String status = order.getStatus();
+                    if ("PLACED".equalsIgnoreCase(status) || "Pending".equalsIgnoreCase(status)) {
+                        orderDAO.updateOrderStatus(orderId, "Cancelled");
+                    }
+                }
+            } catch (NumberFormatException e) {
+                // Ignore and fall through to redirect
+            }
+        }
+        
+        if (orderIdStr != null && !orderIdStr.trim().isEmpty()) {
+            resp.sendRedirect(req.getContextPath() + "/order-status?orderId=" + orderIdStr);
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/orders");
+        }
+    }
+
     public static class OrderItemDetail {
         private OrderItem orderItem;
         private Menu menu;

@@ -573,7 +573,7 @@
 
 </div>
 
-<div class="help-section-card" data-aos="slide-up" data-aos-delay="650">
+<div class="help-section-card">
 
     <div class="help-left-col">
 
@@ -629,7 +629,7 @@
 			<!-- ===========================
      Footer Navigation Buttons
 =========================== -->
-<div class="footer-actions-container" data-aos="fade-up" data-aos-delay="700">
+<div class="footer-actions-container">
 
     <%
         boolean isCancelable = "PLACED".equalsIgnoreCase(currentStatus) || "Pending".equalsIgnoreCase(currentStatus);

@@ -438,7 +438,7 @@ public String getCategoryImage(String category, String contextPath) {
                                 </div>
                             </div>
                             <div class="food-thumbnail">
-                                <img src="${pageContext.request.contextPath}/assets/images/categories/biriyani.jpg" alt="Biryani">
+                                <img src="${pageContext.request.contextPath}/assets/images/categories/biriyani.jpeg" alt="Biryani">
                             </div>
                         </div>
                         <div class="testimonial-body">
@@ -482,7 +482,7 @@ public String getCategoryImage(String category, String contextPath) {
                                 </div>
                             </div>
                             <div class="food-thumbnail">
-                                <img src="${pageContext.request.contextPath}/assets/images/menu/cake.jpg" alt="Cake">
+                                <img src="${pageContext.request.contextPath}/assets/images/categories/cake.png" alt="Cake">
                             </div>
                         </div>
                         <div class="testimonial-body">

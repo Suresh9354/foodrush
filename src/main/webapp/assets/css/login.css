@@ -1,0 +1,775 @@
+/*
+  FOODRUSH LOGIN — Stylesheet
+  AOS fade entrance (same as rest of app)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Design Tokens ───────────────────────────────────────── */
+:root {
+    --orange:        #FF6B00;
+    --orange-dark:   #E55C00;
+    --orange-panel:  #FF6B00;
+    --orange-light:  rgba(255, 107, 0, 0.12);
+    --cream:         #FAF8F5;
+    --white:         #FFFFFF;
+    --brown-dark:    #2C1E16;
+    --brown-mid:     #3C2F2F;
+    --brown-light:   #8C7C77;
+    --gold:          #FFB52E;
+    --gold-bright:   #FFD166;
+    --btn-peach:     #FFC85A;
+    --btn-peach-top: #FFB52E;
+    --input-pill:    999px;
+    --border:        #E6E1DD;
+    --font-ui:       'Outfit', sans-serif;
+    --font-script:   'Caveat', cursive;
+    --ease-smooth:   cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-micro:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --t-smooth:      0.35s var(--ease-smooth);
+    --t-micro:       0.2s  var(--ease-micro);
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-ui);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--cream);
+}
+
+/* ── Root Container ─────────────────────────────────── */
+/*
+   loginbg.png provides: cream left, orange blob, wavy orange right panel.
+   3 direct children in flex: login-left (60%) | food-composition (absolute) | login-right (40%)
+*/
+.login-container {
+    position: relative;     /* needed so absolute food-composition covers it */
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("../images/login/loginbg.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+/* ── LEFT COLUMN ─────────────────────────────────────── */
+/* Flex item — holds logo, headline, features-card. */
+/* food-composition is a sibling that overlays everything. */
+.login-left {
+    position: relative;
+    width: 60%;
+    height: 100%;
+    flex-shrink: 0;
+    z-index: 2;
+    /* no overflow:hidden — branding text must remain unclipped */
+}
+
+/* ── Logo bar ──────────────────────────────────────────── */
+.logo-wrapper {
+    position: absolute;
+    left: 4%;
+    top: 4%;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+}
+
+.logo-branding {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(255,107,0,0.2));
+}
+
+.logo-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.logo-title {
+    font-size: clamp(24px, 2.1vw, 32px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+
+.logo-food  { color: var(--brown-mid); }
+.logo-rush  { color: var(--orange); }
+
+.logo-tagline {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--brown-light);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-top: 2px;
+}
+
+/* ── Headline copy ────────────────────────────────────── */
+.left-content {
+    position: absolute;
+    left: 4%;
+    top: 19%;
+    width: 32%;
+    z-index: 25;  /* above food composition layers */
+}
+
+.branding-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+}
+
+.heading-row-1 {
+    font-size: clamp(42px, 3.8vw, 64px);
+    font-weight: 800;
+    color: var(--brown-mid);
+    letter-spacing: -1px;
+}
+
+.heading-row-2 {
+    font-family: var(--font-script);
+    font-size: clamp(40px, 3.6vw, 62px);
+    color: var(--orange);
+    margin-top: -4px;
+    display: block;
+}
+
+/* Underline accent below "Great Mood!" */
+.heading-row-2::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: var(--orange);
+    border-radius: 2px;
+    margin-top: 6px;
+    opacity: 0.6;
+}
+
+.branding-desc {
+    font-size: clamp(13px, 1vw, 16px);
+    line-height: 1.65;
+    color: var(--brown-light);
+    font-weight: 400;
+    margin-top: 16px;
+}
+
+/* ── Food Scene — separate positioned cutouts (NOT full-screen stack) ── */
+.food-composition {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 62%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.food-item {
+    position: absolute;
+    pointer-events: none;
+    transform-origin: center center;
+}
+
+.food-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+    filter: drop-shadow(0 10px 28px rgba(44, 30, 22, 0.14));
+}
+
+.parallax-wrap,
+.float-wrap {
+    width: 100%;
+}
+
+/* ── Individual positions matching reference design ── */
+
+/* phoneLayer — on the orange blob, slightly right of center */
+.food-phone {
+    left: 36%;
+    top: 17%;
+    width: 38vw;
+    z-index: 4;
+}
+
+/* boardLayer — wooden cutting board under burger, bottom-left */
+.food-board {
+    left: -14%;
+    top: 39%;
+    width: 36vw;
+    z-index: 2;
+}
+
+/* burgerLayer — sits on the board */
+.food-burger {
+    left: 12%;
+    top: 44%;
+    width: 16.5vw;
+    z-index: 4;
+}
+
+/* friesLayer — bowl left of burger */
+.food-fries {
+    left: -2%;
+    top: 48%;
+    width: 12.5vw;
+    z-index: 3;
+}
+
+/* ketchupLayer — small bowl beside burger/board */
+.food-ketchup {
+    left: 6%;
+    top: 60%;
+    width: 10vw;
+    z-index: 5;
+}
+
+/* pizzaLayer — bottom-center, BEHIND scooter (lower z-index) */
+.food-pizza {
+    left: 51%;
+    top: 67%;
+    width: 34vw;
+    z-index: 9;
+}
+
+/* scooterLayer — in front of phone AND pizza */
+.food-scooter {
+    left: 37%;
+    top: 43%;
+    width: 23vw;
+    z-index: 8;
+}
+
+/* pastaLayer — above and beside pizza, not on top of it */
+.food-pasta {
+    left: 65%;
+    top: 44%;
+    width: 25vw;
+    z-index: 7;
+}
+
+/* leaf1Layer … leaf4Layer — scattered accents */
+.food-leaf {
+    z-index: 9;
+    filter: none;
+}
+.food-leaf img {
+    filter: drop-shadow(0 4px 10px rgba(44, 30, 22, 0.1));
+}
+
+.food-leaf-1 { left: 9%; top: 63%; width: 4vw; }
+.food-leaf-2 { left: 14%; top: 34%; width: 3.5vw; }
+.food-leaf-3 { left: 42%; top: 20%; width: 3vw;}
+.food-leaf-4 { left: 5%;  top: 24%; width: 3.2vw; }
+
+/* ── AOS fade — smooth, same effect as rest of app ── */
+.login-container [data-aos="fade"] {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Features Card ────────────────────────────────────── */
+.features-card {
+    position: absolute;
+    left: 3%;
+    bottom: 2.5%;
+    width: 55%;
+    min-height: 110px;
+    background: var(--white);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 8px 32px rgba(44, 30, 22, 0.06);
+    z-index: 30;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    padding: 0 16px;
+}
+
+.feature-item:not(:last-child) {
+    border-right: 1.5px solid #F0ECE9;
+}
+
+.feature-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #FFF0E6;
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform var(--t-smooth);
+}
+
+.feature-item:hover .feature-icon-wrap {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+.feature-icon-wrap svg {
+    width: 20px;
+    height: 20px;
+}
+
+.feature-text h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--brown-mid);
+    margin-bottom: 3px;
+}
+
+.feature-text p {
+    font-size: 11px;
+    color: var(--brown-light);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+
+/* ── RIGHT COLUMN — Orange login panel ───────────────────── */
+.login-right {
+    position: relative;
+    width: 40%;
+    height: 100%;
+    flex-shrink: 0;
+    flex-shrink: 0;
+    display: flex;
+    z-index: 15;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Dot grid decoration (top-right corner) */
+.dot-grid {
+    position: absolute;
+    top: 5%;
+    right: 4%;
+    width: 90px;
+    height: 90px;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Sparkle decorations */
+.sparkle {
+    position: absolute;
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.3);
+    z-index: 2;
+}
+
+.sparkle svg { width: 100%; height: 100%; }
+
+.sparkle-tr {
+    top: 18%;
+    right: 8%;
+    width: 28px;
+    height: 28px;
+}
+
+.sparkle-bl {
+    bottom: 18%;
+    left: 8%;
+    width: 20px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Form wrapper ────────────────────────────────────── */
+.form-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 88%;
+    max-width: 420px;
+    margin: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* ── Form elements ───────────────────────────────────── */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-title {
+    font-size: clamp(32px, 2.8vw, 46px);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 2px;
+}
+
+.form-subtitle {
+    font-size: clamp(13px, 0.95vw, 16px);
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 400;
+    margin-top: -16px;
+}
+
+/* Alert box */
+.alert-msg {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.alert-msg svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Field group */
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.field-label {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin-left: 2px;
+}
+
+/* Field box: icon + input (+ optional toggle) */
+.field-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.field-box input, .field-box textarea {
+    width: 100%;
+    height: clamp(54px, 6.5vh, 68px);
+    background: var(--white);
+    border: 2px solid transparent;
+    border-radius: var(--input-pill);
+    padding: 0 48px 0 56px;
+}
+
+.field-box textarea {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    resize: none;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--brown-dark);
+    outline: none;
+    transition: border-color var(--t-micro), box-shadow var(--t-micro), transform var(--t-micro);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.field-box input::placeholder, .field-box textarea::placeholder {
+    color: #A09690;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.field-box input:focus, .field-box textarea:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15), 0 6px 20px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+}
+
+/* Left icon */
+.field-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5A4035;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.field-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #5A4035;
+}
+
+/* Eye toggle */
+.pw-toggle {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #5A4035;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    transition: transform var(--t-micro), color var(--t-micro);
+    outline: none;
+}
+
+.pw-toggle svg {
+    width: 20px;
+    height: 20px;
+    stroke: #5A4035;
+    pointer-events: none;
+}
+
+.pw-toggle:hover {
+    transform: translateY(-50%) scale(1.15);
+    color: var(--orange);
+}
+
+.pw-toggle:hover svg { stroke: var(--orange); }
+
+/* Forgot link */
+.form-meta {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -10px;
+}
+
+.forgot-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold-bright);
+    text-decoration: none;
+    transition: color var(--t-micro), text-decoration var(--t-micro);
+}
+
+.forgot-link:hover {
+    color: #FFE082;
+    text-decoration: underline;
+}
+
+/* Submit button */
+.submit-btn {
+    width: 100%;
+    height: clamp(54px, 6.5vh, 68px);
+    background: linear-gradient(90deg, var(--btn-peach-top) 0%, var(--btn-peach) 100%);
+    color: #4A2B0F;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: var(--input-pill);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 6px 24px rgba(255, 181, 46, 0.28);
+    transition: transform var(--t-smooth), box-shadow var(--t-smooth);
+    position: relative;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+/* Shimmer overlay on button */
+.submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.submit-btn:hover::after { left: 150%; }
+
+.submit-btn:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 12px 28px rgba(255, 181, 46, 0.38);
+}
+
+.submit-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 12px rgba(255, 181, 46, 0.2);
+}
+
+.btn-label { pointer-events: none; }
+
+/* Loading spinner */
+.btn-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2.5px solid rgba(74, 43, 15, 0.25);
+    border-top-color: #4A2B0F;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+    flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Sign-up prompt */
+.signup-prompt {
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.88);
+    text-align: center;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+.signup-link {
+    color: var(--gold-bright);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: color var(--t-micro);
+}
+
+.signup-link:hover {
+    color: #FFE082;
+    text-decoration: underline;
+}
+
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1199px) {
+    .login-left  { width: 58%; }
+    .login-right { width: 42%; }
+    .food-composition { width: 58%; }
+
+    .left-content { width: 42%; }
+    .features-card { width: 58%; }
+
+    .food-phone   { left: 36%; top: 20%; width: 18vw; }
+    .food-scooter { left: 30%; top: 48%; width: 22vw; }
+    .food-pizza   { left: 26%; top: 65%; width: 30vw; }
+    .food-pasta   { left: 50%; top: 32%; width: 16vw; }
+}
+
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column;
+        background-size: cover;
+        background-position: top center;
+        overflow-y: auto;
+    }
+
+    .login-left {
+        width: 100%;
+        height: 55vh;
+        min-height: 300px;
+    }
+
+    .login-right {
+        width: 100%;
+        height: auto;
+        min-height: 50vh;
+        padding: 40px 24px;
+        align-items: flex-start;
+        background: var(--orange);
+    }
+
+    .form-wrapper { max-width: 100%; width: 100%; }
+
+    .features-card { display: none; }
+
+    .food-composition {
+        width: 100%;
+        height: 55vh;
+        top: 8%;
+    }
+
+    .food-phone   { left: 32%; top: 16%; width: 26vw; }
+    .food-board   { left: 2%;  top: 60%; width: 28vw; }
+    .food-burger  { left: 6%;  top: 36%; width: 20vw; }
+    .food-fries   { left: 0;   top: 46%; width: 14vw; }
+    .food-ketchup { left: 14%; top: 64%; width: 11vw; }
+    .food-scooter { left: 28%; top: 44%; width: 30vw; z-index: 8; }
+    .food-pizza   { left: 22%; top: 58%; width: 40vw; z-index: 4; }
+    .food-pasta   { left: 50%; top: 20%; width: 24vw; z-index: 7; }
+    .food-leaf    { display: none; }
+
+    .left-content {
+        width: 70%;
+        top: 16%;
+    }
+}
+
+@media (max-width: 600px) {
+    .login-container {
+        background-image: none;
+        background-color: var(--orange);
+    }
+
+    .login-left  { display: none; }
+    .food-composition { display: none; }
+
+    .login-right {
+        width: 100%;
+        height: 100vh;
+        background: var(--orange);
+        padding: 40px 24px;
+        align-items: center;
+    }
+
+    .form-title { font-size: 32px; text-align: center; }
+    .form-subtitle { text-align: center; }
+    .signup-prompt { text-align: center; }
+}
+
+/* ── Accessibility: reduced motion ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .login-container [data-aos] {
+        transition-property: none !important;
+        transform: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    .submit-btn:hover, .field-box input:focus, .field-box textarea:focus {
+        transform: none !important;
+    }
+
+    * { transition-duration: 0.01s !important; }
+}

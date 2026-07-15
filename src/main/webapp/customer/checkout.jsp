@@ -59,7 +59,7 @@ for (CartItem item : cart.getItems()) {
 
 	<jsp:include page="/components/navbar.jsp" />
 
-	<section class="checkout-section">
+	<section class="checkout-section" data-aos="fade-up">
 
 		<div class="container">
 
@@ -78,7 +78,7 @@ for (CartItem item : cart.getItems()) {
 					<div class="checkout-left-column">
 
 						<!-- 1. Delivery Address Block -->
-						<div class="checkout-card" data-aos="fade-right">
+						<div class="checkout-card">
 							<div class="step-title-row">
 								<span class="step-badge">1</span>
 								<h2 class="step-heading">Delivery Address</h2>
@@ -131,7 +131,7 @@ for (CartItem item : cart.getItems()) {
 						</div>
 
 						<!-- 2. Payment Method Block -->
-						<div class="checkout-card mt-3" data-aos="fade-left">
+						<div class="checkout-card mt-3">
 							<div class="step-title-row">
 								<span class="step-badge">2</span>
 								<h2 class="step-heading">Payment Method</h2>
@@ -224,7 +224,7 @@ for (CartItem item : cart.getItems()) {
 					<!-- Right Column (Bill Details) -->
 					<div class="checkout-right-column">
 						
-						<div class="checkout-bill-card" data-aos="fade-up" data-aos-delay="200">
+						<div class="checkout-bill-card">
 							
 							<h3 class="bill-title">Bill Details</h3>
 							

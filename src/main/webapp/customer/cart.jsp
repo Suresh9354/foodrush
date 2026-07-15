@@ -52,7 +52,7 @@ if (cart != null) {
 	<jsp:include page="/components/navbar.jsp" />
 
 	<section class="cart-section">
-		<div class="container">
+		<div class="container" data-aos="fade-up" data-aos-delay="250">
 
 			<div class="cart-header-main">
 				<h1 class="cart-title">Your Cart</h1>
@@ -105,7 +105,7 @@ if (cart != null) {
 						}
 						String resName = cartRestaurant != null ? cartRestaurant.getName() : "Restaurant";
 					%>
-					<div class="cart-card" data-aos="fade-up" data-aos-delay="<%= 100 + ((itemIdx - 1) % 4) * 80 %>">
+					<div class="cart-card" >
 						<div class="cart-card-image-wrapper">
 							<img src="${pageContext.request.contextPath}/<%=item.getImageUrl()%>" alt="<%=item.getName()%>" onerror="this.src='${pageContext.request.contextPath}/assets/images/menu/idlivada.png'">
 						</div>
@@ -161,7 +161,7 @@ if (cart != null) {
 				</div>
 
 				<!-- Right Column: Sticky Summary -->
-				<div class="cart-summary-column" data-aos="fade-left" data-aos-delay="200">
+				<div class="cart-summary-column">
 					<div class="cart-summary-card">
 						<%
 						double itemTotal = total;
