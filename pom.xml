@@ -62,6 +62,13 @@
         <artifactId>jbcrypt</artifactId>
         <version>0.4</version>
     </dependency>
+
+    <!-- HikariCP Connection Pool -->
+    <dependency>
+        <groupId>com.zaxxer</groupId>
+        <artifactId>HikariCP</artifactId>
+        <version>6.3.0</version>
+    </dependency>
     
   </dependencies>
 </project>
