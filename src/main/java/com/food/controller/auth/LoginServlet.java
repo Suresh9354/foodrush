@@ -27,6 +27,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req,
                           HttpServletResponse resp)
             throws ServletException, IOException {
+    	
+    	System.out.println("========== LOGIN SERVLET CALLED ==========");
 
         String email = req.getParameter("email");
         String password = req.getParameter("password");
@@ -57,16 +59,16 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("loggedInUser", user);
 
             if ("ADMIN".equalsIgnoreCase(user.getRole())) {
-                resp.sendRedirect("admin/dashboard.jsp");
+                resp.sendRedirect(req.getContextPath() + "/admin/dashboard.jsp");
             } else {
-                resp.sendRedirect("home");
+                resp.sendRedirect(req.getContextPath() + "/home");
             }
 
         } else {
 
             req.setAttribute("error", "Invalid email or password");
 
-            req.getRequestDispatcher("auth/login.jsp")
+            req.getRequestDispatcher("/auth/login.jsp")
                .forward(req, resp);
         }
     }
