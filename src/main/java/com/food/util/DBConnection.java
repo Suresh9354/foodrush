@@ -15,54 +15,50 @@ public class DBConnection {
     private static final String LOCAL_USER = "root";
     private static final String LOCAL_PASSWORD = "root";
 
-    // One connection pool for the entire application
-    private static final HikariDataSource dataSource;
+    private static HikariDataSource dataSource;
 
-    static {
+    private static synchronized void initDataSource() {
+        if (dataSource != null) return;
 
-        HikariConfig config = new HikariConfig();
+        try {
+            HikariConfig config = new HikariConfig();
 
-        // Check cloud environment variables
-        String url = System.getenv("DB_URL");
-        String user = System.getenv("DB_USER");
-        String password = System.getenv("DB_PASSWORD");
+            // Check cloud environment variables
+            String url = System.getenv("DB_URL");
+            String user = System.getenv("DB_USER");
+            String password = System.getenv("DB_PASSWORD");
 
-        // If cloud variables are not available, use local MySQL
-        if (url == null || url.isBlank()) {
+            // If cloud variables are not available, use local MySQL
+            if (url == null || url.isBlank()) {
+                url = LOCAL_URL;
+                user = LOCAL_USER;
+                password = LOCAL_PASSWORD;
+                System.out.println("Database mode: LOCAL MySQL");
+            } else {
+                System.out.println("Database mode: CLOUD MySQL (Aiven)");
+            }
 
-            url = LOCAL_URL;
-            user = LOCAL_USER;
-            password = LOCAL_PASSWORD;
+            // Database configuration
+            config.setJdbcUrl(url);
+            config.setUsername(user);
+            config.setPassword(password);
+            config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-            System.out.println("Database mode: LOCAL MySQL");
+            // Connection pool configuration
+            config.setMaximumPoolSize(10);
+            config.setMinimumIdle(2);
+            config.setConnectionTimeout(30000);
+            config.setIdleTimeout(600000);
+            config.setMaxLifetime(1800000);
+            config.setPoolName("FoodRushHikariPool");
 
-        } else {
+            // Create connection pool
+            dataSource = new HikariDataSource(config);
+            System.out.println("HikariCP connection pool initialized successfully!");
 
-            System.out.println("Database mode: CLOUD MySQL (Aiven)");
+        } catch (Exception e) {
+            System.err.println("Failed to initialize HikariCP connection pool: " + e.getMessage());
         }
-
-        // Database configuration
-        config.setJdbcUrl(url);
-        config.setUsername(user);
-        config.setPassword(password);
-        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-
-        // Connection pool configuration
-        config.setMaximumPoolSize(10);
-        config.setMinimumIdle(2);
-
-        config.setConnectionTimeout(30000);
-        config.setIdleTimeout(600000);
-        config.setMaxLifetime(1800000);
-
-        config.setPoolName("FoodRushHikariPool");
-
-        // Create connection pool only once
-        dataSource = new HikariDataSource(config);
-
-        System.out.println(
-                "HikariCP connection pool initialized successfully!"
-        );
     }
 
 
@@ -71,18 +67,13 @@ public class DBConnection {
     }
 
 
-    public static Connection getConnection() {
-
-        try {
-
-            return dataSource.getConnection();
-
-        } catch (SQLException e) {
-
-            throw new RuntimeException(
-                    "Failed to get database connection from HikariCP pool.",
-                    e
-            );
+    public static Connection getConnection() throws SQLException {
+        if (dataSource == null) {
+            initDataSource();
         }
+        if (dataSource == null) {
+            throw new SQLException("Database connection pool is not initialized (Database is down).");
+        }
+        return dataSource.getConnection();
     }
 }
